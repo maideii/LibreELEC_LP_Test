@@ -1,0 +1,46 @@
+diff -Naur cwiid_-0.6.00+svn201.orig/configure.ac cwiid_-0.6.00+svn201/configure.ac
+--- cwiid_-0.6.00+svn201.orig/configure.ac	2017-01-19 11:38:04.100377865 +0800
++++ cwiid_-0.6.00+svn201/configure.ac	2017-01-19 11:38:37.960376873 +0800
+@@ -124,7 +124,7 @@
+ fi
+ AC_SUBST(LDCONFIG)
+ 
+-pkg_modules="gtk+-2.0 >= 2.0.0 gthread-2.0"
++pkg_modules="gthread-2.0"
+ PKG_CHECK_MODULES([GTK], [$pkg_modules])
+ AC_SUBST(GTK_CFLAGS)
+ AC_SUBST(GTK_LIBS)
+@@ -137,8 +137,6 @@
+ 	[man/Makefile]
+ 	[libcwiid/Makefile]
+ 	[libcwiid/cwiid.pc]
+-	[wmdemo/Makefile]
+-	[wmgui/Makefile]
+ 	[wminput/Makefile]
+ 	[wminput/plugins/Makefile]
+ 	[wminput/plugins/ir_ptr/Makefile]
+
+--- cwiid_-0.6.00+svn201.orig/configure	2017-01-19 13:11:25.074883069 +0800
++++ cwiid_-0.6.00+svn201/configure	2017-01-19 13:11:44.602882497 +0800
+@@ -3817,7 +3817,7 @@
+ fi
+ 
+ 
+-pkg_modules="gtk+-2.0 >= 2.0.0 gthread-2.0"
++pkg_modules="gthread-2.0"
+ 
+ 
+ if test "x$ac_cv_env_PKG_CONFIG_set" != "xset"; then
+
+diff -Naur cwiid_-0.6.00+svn201.orig/Makefile.in cwiid_-0.6.00+svn201/Makefile.in
+--- cwiid_-0.6.00+svn201.orig/Makefile.in	2017-01-19 14:52:35.901821042 +0800
++++ cwiid_-0.6.00+svn201/Makefile.in	2017-01-19 14:53:44.489819034 +0800
+@@ -3,7 +3,7 @@
+ include @top_builddir@/defs.mak
+ 
+ LIB_DIRS = libcwiid
+-BIN_DIRS = wmgui wminput lswm
++BIN_DIRS = wminput lswm
+ DOC_DIRS = man doc
+ ifdef PYTHON
+ BIND_DIRS = python

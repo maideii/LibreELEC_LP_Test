@@ -1,0 +1,23 @@
+diff -Naur Python-2.7.13.orig/Makefile.pre.in Python-2.7.13/Makefile.pre.in
+--- Python-2.7.13.orig/Makefile.pre.in	2017-01-16 10:23:00.351501343 +0800
++++ Python-2.7.13/Makefile.pre.in	2017-01-16 10:26:50.710627680 +0800
+@@ -64,7 +64,7 @@
+ # Shared libraries must be installed with executable mode on some systems;
+ # rather than figuring out exactly which, we always give them executable mode.
+ # Also, making them read-only seems to be a good idea...
+-INSTALL_SHARED= ${INSTALL} -m 555
++INSTALL_SHARED= ${INSTALL} -m 777
+ 
+ MKDIR_P=	@MKDIR_P@
+ 
+@@ -156,7 +156,7 @@
+ # install process.  Default to user-only-writable for all file types.
+-DIRMODE=	755
++DIRMODE=	777
+-EXEMODE=	755
++EXEMODE=	755
+-FILEMODE=	644
++FILEMODE=	755
+ 
+ # configure script arguments
+ CONFIG_ARGS=	@CONFIG_ARGS@

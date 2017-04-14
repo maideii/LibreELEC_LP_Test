@@ -1,0 +1,12 @@
+diff -Naur pciutils-3.5.2.orig/Makefile pciutils-3.5.2/Makefile
+--- pciutils-3.5.2.orig/Makefile	2016-12-20 16:47:03.071346071 +0800
++++ pciutils-3.5.2/Makefile	2016-12-20 16:47:21.887346891 +0800
+@@ -32,7 +32,7 @@
+ ABI_VERSION=.3
+ 
+ # Installation directories
+-PREFIX=/usr/local
++PREFIX=/usr
+ SBINDIR=$(PREFIX)/sbin
+ SHAREDIR=$(PREFIX)/share
+ IDSDIR=$(SHAREDIR)

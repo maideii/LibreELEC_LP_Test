@@ -1,0 +1,11 @@
+diff -Naur linux-4.8.7.orig/net/rfkill/rfkill-gpio.c linux-4.8.7/net/rfkill/rfkill-gpio.c
+--- linux-4.8.7.orig/net/rfkill/rfkill-gpio.c	2016-11-14 16:51:42.970525907 +0800
++++ linux-4.8.7/net/rfkill/rfkill-gpio.c	2016-11-14 16:52:31.098524534 +0800
+@@ -163,6 +163,7 @@
+ static const struct acpi_device_id rfkill_acpi_match[] = {
+ 	{ "BCM4752", RFKILL_TYPE_GPS },
+ 	{ "LNV4752", RFKILL_TYPE_GPS },
++	{ "OBDA8723", RFKILL_TYPE_BLUETOOTH },
+ 	{ },
+ };
+ MODULE_DEVICE_TABLE(acpi, rfkill_acpi_match);
