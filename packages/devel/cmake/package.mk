@@ -17,12 +17,7 @@
 ################################################################################
 
 PKG_NAME="cmake"
-<<<<<<< HEAD
 PKG_VERSION="3.7.2"
-PKG_REV="1"
-=======
-PKG_VERSION="3.7.1"
->>>>>>> parent of 1278591b6... linux 4.8.17 configuration set
 PKG_ARCH="any"
 PKG_LICENSE="BSD"
 PKG_SITE="http://www.cmake.org/"

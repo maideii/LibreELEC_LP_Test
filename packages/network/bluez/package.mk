@@ -79,12 +79,6 @@ post_makeinstall_target() {
     sed -i $INSTALL/etc/bluetooth/main.conf \
         -e "s|^#\[Policy\]|\[Policy\]|g" \
         -e "s|^#AutoEnable.*|AutoEnable=true|g"
-<<<<<<< HEAD
-=======
-
-  mkdir -p $SYSROOT_PREFIX/usr/lib
-    cp -P $INSTALL/usr/lib/libbluetooth.s* $SYSROOT_PREFIX/usr/lib/.
->>>>>>> parent of 1278591b6... linux 4.8.17 configuration set
 }
 
 post_install() {

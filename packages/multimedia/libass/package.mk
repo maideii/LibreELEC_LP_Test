@@ -17,7 +17,7 @@
 ################################################################################
 
 PKG_NAME="libass"
-PKG_VERSION="0.13.5"
+PKG_VERSION="0.13.6"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="BSD"
@@ -41,8 +41,3 @@ if [ $TARGET_ARCH = "i386" ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET yasm:host"
   PKG_CONFIGURE_OPTS_TARGET="$PKG_CONFIGURE_OPTS_TARGET --enable-asm"
 fi
-
-post_makeinstall_target() {
-  mkdir -p $SYSROOT_PREFIX/usr/lib
-    cp -P $INSTALL/usr/lib/libass.s* $SYSROOT_PREFIX/usr/lib/.
-}

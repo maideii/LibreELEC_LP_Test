@@ -17,7 +17,7 @@
 ################################################################################
 
 PKG_NAME="RTL8188EU"
-PKG_VERSION="ced2b64"
+PKG_VERSION="18a5f33"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"

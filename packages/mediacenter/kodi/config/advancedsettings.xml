@@ -1,8 +1,6 @@
 <advancedsettings>
   <showexitbutton>false</showexitbutton>
-<<<<<<< HEAD
   <remotedelay>1</remotedelay>
-=======
   <cputempcommand>cputemp</cputempcommand>
   <gputempcommand>gputemp</gputempcommand>
   <video>
@@ -15,7 +13,6 @@
       </refresh>
     </latency>
   </video>
->>>>>>> parent of 1278591b6... linux 4.8.17 configuration set
   <samba>
     <clienttimeout>30</clienttimeout>
   </samba>

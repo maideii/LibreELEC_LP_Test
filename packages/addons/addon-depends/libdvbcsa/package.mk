@@ -17,12 +17,7 @@
 ################################################################################
 
 PKG_NAME="libdvbcsa"
-<<<<<<< HEAD
 PKG_VERSION="aae3d0c"
-=======
-PKG_VERSION="4ce8be8"
-PKG_REV="1"
->>>>>>> parent of 1278591b6... linux 4.8.17 configuration set
 PKG_ARCH="any"
 PKG_LICENSE="LGPL"
 PKG_SITE="http://www.videolan.org/developers/libdvbcsa.html"

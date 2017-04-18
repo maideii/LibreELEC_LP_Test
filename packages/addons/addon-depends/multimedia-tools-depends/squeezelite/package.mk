@@ -17,12 +17,7 @@
 ################################################################################
 
 PKG_NAME="squeezelite"
-<<<<<<< HEAD
 PKG_VERSION="a3d95ec"
-=======
-PKG_VERSION="33cca7e"
-PKG_REV="0"
->>>>>>> parent of 1278591b6... linux 4.8.17 configuration set
 PKG_ARCH="any"
 PKG_LICENSE="GPLv3"
 PKG_SITE="https://github.com/ralph-irving/squeezelite"

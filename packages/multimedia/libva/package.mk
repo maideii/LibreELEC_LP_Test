@@ -17,12 +17,12 @@
 ################################################################################
 
 PKG_NAME="libva"
-PKG_VERSION="1.7.3"
+PKG_VERSION="1.8.0"
 PKG_REV="1"
 PKG_ARCH="i386 x86_64"
 PKG_LICENSE="GPL"
 PKG_SITE="http://freedesktop.org/wiki/Software/vaapi"
-PKG_URL="http://www.freedesktop.org/software/vaapi/releases/$PKG_NAME/$PKG_NAME-$PKG_VERSION.tar.bz2"
+PKG_URL="https://github.com/01org/libva/releases/download/$PKG_VERSION/$PKG_NAME-$PKG_VERSION.tar.bz2"
 PKG_DEPENDS_TARGET="toolchain libX11 libXext libXfixes libdrm mesa glu"
 PKG_SECTION="multimedia"
 PKG_SHORTDESC="libva: The main motivation for VAAPI (Video Acceleration API) is to enable hardware accelerated video decode/encode at various entry-points (VLD, IDCT, Motion Compensation etc.) for the prevailing coding standards today (MPEG-2, MPEG-4 ASP/H.263, MPEG-4 AVC/H.264, and VC-1/VMW3)."
@@ -39,22 +39,8 @@ PKG_CONFIGURE_OPTS_TARGET="--disable-silent-rules \
                            --enable-egl \
                            --disable-wayland \
                            --disable-dummy-driver \
-                           --with-drivers-path=/usr/lib"
-
-post_make_target() {
-  mkdir -p $SYSROOT_PREFIX/usr/lib
-    cp -P $ROOT/$PKG_BUILD/.$TARGET_NAME/va/.libs/libva.s* $SYSROOT_PREFIX/usr/lib/.
-    cp -P $ROOT/$PKG_BUILD/.$TARGET_NAME/va/.libs/libva-drm.s* $SYSROOT_PREFIX/usr/lib/.
-    cp -P $ROOT/$PKG_BUILD/.$TARGET_NAME/va/.libs/libva-egl.s* $SYSROOT_PREFIX/usr/lib/.
-    cp -P $ROOT/$PKG_BUILD/.$TARGET_NAME/va/.libs/libva-glx.s* $SYSROOT_PREFIX/usr/lib/.
-    cp -P $ROOT/$PKG_BUILD/.$TARGET_NAME/va/.libs/libva-tpi.s* $SYSROOT_PREFIX/usr/lib/.
-    cp -P $ROOT/$PKG_BUILD/.$TARGET_NAME/va/.libs/libva-x11.s* $SYSROOT_PREFIX/usr/lib/.
-}
+                           --with-drivers-path=/usr/lib/va"
 
 post_makeinstall_target() {
   rm -rf $INSTALL/usr/bin
-  if [ "$DEVTOOLS" = yes ]; then
-    mkdir -p $INSTALL/usr/bin
-      cp test/vainfo/.libs/vainfo $INSTALL/usr/bin
-  fi
 }

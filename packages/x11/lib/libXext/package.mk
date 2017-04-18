@@ -32,8 +32,3 @@ PKG_IS_ADDON="no"
 PKG_AUTORECONF="yes"
 
 PKG_CONFIGURE_OPTS_TARGET="--enable-malloc0returnsnull --without-xmlto"
-
-post_makeinstall_target() {
-    mkdir -p $SYSROOT_PREFIX/usr/lib
-      cp -P $INSTALL/usr/lib/libX* $SYSROOT_PREFIX/usr/lib/.
-}

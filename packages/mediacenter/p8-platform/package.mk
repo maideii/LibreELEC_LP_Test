@@ -32,10 +32,6 @@ PKG_IS_ADDON="no"
 PKG_AUTORECONF="no"
 
 PKG_CMAKE_OPTS_TARGET="-DCMAKE_INSTALL_LIBDIR:STRING=lib \
-<<<<<<< HEAD
-=======
-                       -DCMAKE_INSTALL_LIBDIR_NOARCH:STRING=lib \
->>>>>>> parent of 1278591b6... linux 4.8.17 configuration set
                        -DCMAKE_INSTALL_PREFIX_TOOLCHAIN=$SYSROOT_PREFIX/usr \
                        -DBUILD_SHARED_LIBS=0"
 

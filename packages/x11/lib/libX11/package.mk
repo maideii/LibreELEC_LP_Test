@@ -58,8 +58,3 @@ pre_configure_target() {
   export LDFLAGS_FOR_BUILD="$HOST_LDFLAGS"
   unset PKG_CONFIG_ALLOW_SYSTEM_CFLAGS
 }
-
-post_makeinstall_target() {
-    mkdir -p $SYSROOT_PREFIX/usr/lib
-      cp -P $INSTALL/usr/lib/libX* $SYSROOT_PREFIX/usr/lib/.
-}

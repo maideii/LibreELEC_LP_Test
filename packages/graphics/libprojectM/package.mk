@@ -31,9 +31,5 @@ PKG_LONGDESC="libprojectM:"
 PKG_IS_ADDON="no"
 PKG_AUTORECONF="no"
 
-<<<<<<< HEAD
 PKG_CMAKE_OPTS_TARGET="-DCMAKE_PREFIX_PATH=$SYSROOT_PREFIX/usr \
                        -DBUILD_PROJECTM_STATIC=1"
-=======
-PKG_CMAKE_OPTS_TARGET="-DBUILD_PROJECTM_STATIC=1"
->>>>>>> parent of 1278591b6... linux 4.8.17 configuration set

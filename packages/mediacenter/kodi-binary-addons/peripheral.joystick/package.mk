@@ -17,11 +17,7 @@
 ################################################################################
 
 PKG_NAME="peripheral.joystick"
-<<<<<<< HEAD
 PKG_VERSION="b464260"
-=======
-PKG_VERSION="175bfc1"
->>>>>>> parent of 1278591b6... linux 4.8.17 configuration set
 PKG_REV="0"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"

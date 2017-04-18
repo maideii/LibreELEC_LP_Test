@@ -32,8 +32,3 @@ PKG_IS_ADDON="no"
 PKG_AUTORECONF="yes"
 
 PKG_CONFIGURE_OPTS_TARGET="--enable-malloc0returnsnull"
-
-post_makeinstall_target() {
-    mkdir -p $SYSROOT_PREFIX/usr/lib
-      cp -P $INSTALL/usr/lib/libXrandr* $SYSROOT_PREFIX/usr/lib/.
-}

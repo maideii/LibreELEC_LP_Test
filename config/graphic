@@ -18,15 +18,15 @@ get_graphicdrivers() {
   for drv in $GRAPHIC_DRIVERS; do
     if [ "$drv" = "i915" ]; then
       DRI_DRIVERS="$DRI_DRIVERS,i915"
-#      XORG_DRIVERS="$XORG_DRIVERS intel"
-#      COMPOSITE_SUPPORT="yes"
+      XORG_DRIVERS="$XORG_DRIVERS intel"
+      COMPOSITE_SUPPORT="yes"
       VAAPI_SUPPORT="yes"
     fi
 
     if [ "$drv" = "i965" ]; then
       DRI_DRIVERS="$DRI_DRIVERS,i965"
-#      XORG_DRIVERS="$XORG_DRIVERS intel"
-#      COMPOSITE_SUPPORT="yes"
+      XORG_DRIVERS="$XORG_DRIVERS intel"
+      COMPOSITE_SUPPORT="yes"
       VAAPI_SUPPORT="yes"
     fi
 

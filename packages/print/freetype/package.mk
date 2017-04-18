@@ -17,7 +17,7 @@
 ################################################################################
 
 PKG_NAME="freetype"
-PKG_VERSION="2.6.5"
+PKG_VERSION="2.7.1"
 PKG_REV="1"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
@@ -50,6 +50,4 @@ post_makeinstall_target() {
   ln -v -sf $SYSROOT_PREFIX/usr/include/freetype2 $SYSROOT_PREFIX/usr/include/freetype
 
   rm -rf $INSTALL/usr/bin
-  mkdir -p $SYSROOT_PREFIX/usr/lib
-    cp -P $INSTALL/usr/lib/libfreetype* $SYSROOT_PREFIX/usr/lib/.
 }

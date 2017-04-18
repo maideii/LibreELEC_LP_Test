@@ -25,12 +25,7 @@
 #   there: http://forum.xbmc.org/showthread.php?tid=177557
 
 PKG_NAME="curl"
-<<<<<<< HEAD
 PKG_VERSION="7.53.1"
-PKG_REV="1"
-=======
-PKG_VERSION="7.52.1"
->>>>>>> parent of 1278591b6... linux 4.8.17 configuration set
 PKG_ARCH="any"
 PKG_LICENSE="MIT"
 PKG_SITE="http://curl.haxx.se"

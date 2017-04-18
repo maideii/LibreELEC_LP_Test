@@ -18,10 +18,6 @@
 
 PKG_NAME="glfw"
 PKG_VERSION="2.7.9"
-<<<<<<< HEAD
-PKG_REV="1"
-=======
->>>>>>> parent of 1278591b6... linux 4.8.17 configuration set
 PKG_ARCH="i386 x86_64"
 PKG_LICENSE="BSD"
 PKG_SITE="http://glfw.org"

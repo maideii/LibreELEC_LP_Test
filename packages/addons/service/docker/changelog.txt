@@ -1,3 +1,15 @@
+9.0.114
+- Enable journald buildtag
+
+9.0.113
+- Update to docker 1.13.1
+- Update to golang 1.7.5
+
+8.1.112
+- Update to docker 1.13.0
+- Use journald log driver
+- Add docker-init (tini)
+
 8.1.111
 - Add temporary cleanup for old systemd service
 

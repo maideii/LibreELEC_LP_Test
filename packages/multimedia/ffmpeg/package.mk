@@ -17,7 +17,7 @@
 ################################################################################
 
 PKG_NAME="ffmpeg"
-PKG_VERSION="3.2.3"
+PKG_VERSION="3.2.4"
 PKG_ARCH="any"
 PKG_LICENSE="LGPLv2.1+"
 PKG_SITE="https://ffmpeg.org"
@@ -35,7 +35,7 @@ PKG_AUTORECONF="no"
 get_graphicdrivers
 
 if [ "$VAAPI_SUPPORT" = "yes" ]; then
-  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET libva-intel-driver"
+  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET intel-vaapi-driver"
   FFMPEG_VAAPI="--enable-vaapi"
 else
   FFMPEG_VAAPI="--disable-vaapi"
@@ -214,14 +214,4 @@ configure_target() {
 
 post_makeinstall_target() {
   rm -rf $INSTALL/usr/share/ffmpeg/examples
-
-  mkdir -p $SYSROOT_PREFIX/usr/lib
-    cp -P $ROOT/$PKG_BUILD/libavcodec/libavcodec.s* $SYSROOT_PREFIX/usr/lib
-    cp -P $ROOT/$PKG_BUILD/libavdevice/libavdevice.s* $SYSROOT_PREFIX/usr/lib
-    cp -P $ROOT/$PKG_BUILD/libavfilter/libavfilter.s* $SYSROOT_PREFIX/usr/lib
-    cp -P $ROOT/$PKG_BUILD/libavformat/libavformat.s* $SYSROOT_PREFIX/usr/lib
-    cp -P $ROOT/$PKG_BUILD/libavutil/libavutil.s* $SYSROOT_PREFIX/usr/lib
-    cp -P $ROOT/$PKG_BUILD/libpostproc/libpostproc.s* $SYSROOT_PREFIX/usr/lib
-    cp -P $ROOT/$PKG_BUILD/libswresample/libswresample.s* $SYSROOT_PREFIX/usr/lib
-    cp -P $ROOT/$PKG_BUILD/libswscale/libswscale.s* $SYSROOT_PREFIX/usr/lib
 }

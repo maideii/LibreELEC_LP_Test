@@ -48,7 +48,4 @@ pre_configure_target() {
 
 post_makeinstall_target() {
   rm -rf $INSTALL/usr/bin
-
-  mkdir -p $SYSROOT_PREFIX/usr/lib
-    cp -P $INSTALL/usr/lib/libfontconfig.* $SYSROOT_PREFIX/usr/lib/.
 }

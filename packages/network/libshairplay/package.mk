@@ -35,6 +35,4 @@ PKG_AUTORECONF="yes"
 post_makeinstall_target() {
   mkdir -p $INSTALL/etc/shairplay
     cp -P ../airport.key $INSTALL/etc/shairplay
-  mkdir -p $SYSROOT_PREFIX/usr/lib
-    cp -P $INSTALL/usr/lib/libshairplay.s* $SYSROOT_PREFIX/usr/lib/.
 }

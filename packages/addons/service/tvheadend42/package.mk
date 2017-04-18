@@ -1,6 +1,6 @@
 ################################################################################
 #      This file is part of LibreELEC - https://LibreELEC.tv
-#      Copyright (C) 2016 Team LibreELEC
+#      Copyright (C) 2016-2017 Team LibreELEC
 #
 #  LibreELEC is free software: you can redistribute it and/or modify
 #  it under the terms of the GNU General Public License as published by
@@ -17,9 +17,9 @@
 ################################################################################
 
 PKG_NAME="tvheadend42"
-PKG_VERSION="1f894a6"
-PKG_VERSION_NUMBER="4.1.2401"
-PKG_REV="108"
+PKG_VERSION="e5f5a42"
+PKG_VERSION_NUMBER="4.1.2415"
+PKG_REV="109"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.tvheadend.org"
@@ -63,7 +63,7 @@ PKG_CONFIGURE_OPTS_TARGET="--prefix=/usr \
                            --enable-trace \
                            --nowerror \
                            --disable-bintray_cache \
-                           --python=$ROOT/$TOOLCHAIN/bin/python"
+                           --python=$TOOLCHAIN/bin/python"
 
 post_unpack() {
   sed -e 's/VER="0.0.0~unknown"/VER="'$PKG_VERSION_NUMBER' ~ LibreELEC Tvh-addon v'$ADDON_VERSION'.'$PKG_REV'"/g' -i $PKG_BUILD/support/version
@@ -71,12 +71,12 @@ post_unpack() {
 
 pre_configure_target() {
 # fails to build in subdirs
-  cd $ROOT/$PKG_BUILD
+  cd $PKG_BUILD
   rm -rf .$TARGET_NAME
 
 # transcoding
   if [ "$TARGET_ARCH" = x86_64 ]; then
-    export AS=$ROOT/$TOOLCHAIN/bin/yasm
+    export AS=$TOOLCHAIN/bin/yasm
   fi
 
   export CROSS_COMPILE=$TARGET_PREFIX

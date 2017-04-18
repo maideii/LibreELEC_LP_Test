@@ -18,10 +18,6 @@
 
 PKG_NAME="libinput"
 PKG_VERSION="1.5.3"
-<<<<<<< HEAD
-PKG_REV="1"
-=======
->>>>>>> parent of 1278591b6... linux 4.8.17 configuration set
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.freedesktop.org/wiki/Software/libinput/"

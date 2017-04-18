@@ -23,17 +23,10 @@ PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.kodi.tv"
 PKG_URL="https://github.com/xbmc/xbmc/archive/$PKG_VERSION.tar.gz"
-<<<<<<< HEAD
 PKG_SOURCE_DIR="xbmc-$PKG_VERSION"
 PKG_DEPENDS_TARGET="toolchain kodi:host kodi:bootstrap xmlstarlet:host Python zlib systemd pciutils lzo pcre swig:host libass curl fontconfig fribidi tinyxml libjpeg-turbo freetype libcdio taglib libxml2 libxslt rapidjson sqlite ffmpeg crossguid giflib libdvdnav libhdhomerun opengl lcms2"
 PKG_DEPENDS_HOST="toolchain giflib:host"
-PKG_DEPENDS_BOOTSTRAP="toolchain lzo:host libpng:host libjpeg-turbo giflib zlib:host"
-=======
-PKG_SOURCE_DIR="xbmc-$PKG_VERSION*"
-PKG_DEPENDS_TARGET="toolchain kodi:host kodi:bootstrap xmlstarlet:host Python zlib systemd pciutils lzo pcre swig:host libass curl fontconfig fribidi tinyxml libjpeg-turbo freetype libcdio taglib libxml2 libxslt yajl sqlite ffmpeg crossguid giflib libdvdnav libhdhomerun cwiid"
-PKG_DEPENDS_HOST="toolchain"
-PKG_DEPENDS_BOOTSTRAP="toolchain lzo:host libpng:host libjpeg-turbo:host giflib:host"
->>>>>>> parent of 1278591b6... linux 4.8.17 configuration set
+PKG_DEPENDS_BOOTSTRAP="toolchain lzo:host libpng:host libjpeg-turbo:host giflib:host zlib:host"
 PKG_SECTION="mediacenter"
 PKG_SHORTDESC="kodi: Kodi Mediacenter"
 PKG_LONGDESC="Kodi Media Center (which was formerly named Xbox Media Center or XBMC) is a free and open source cross-platform media player and home entertainment system software with a 10-foot user interface designed for the living-room TV. Its graphical user interface allows the user to easily manage video, photos, podcasts, and music from a computer, optical disk, local network, and the internet using a remote control."
@@ -41,7 +34,6 @@ PKG_LONGDESC="Kodi Media Center (which was formerly named Xbox Media Center or X
 PKG_IS_ADDON="no"
 PKG_AUTORECONF="no"
 
-<<<<<<< HEAD
 PKG_CMAKE_SCRIPT_HOST="tools/depends/native/JsonSchemaBuilder/CMakeLists.txt"
 PKG_CMAKE_OPTS_HOST="-Wno-dev"
 
@@ -68,7 +60,7 @@ PKG_CMAKE_OPTS_TARGET="-DNATIVEPREFIX=$ROOT/$TOOLCHAIN \
                        -DENABLE_CCACHE=ON \
                        -DENABLE_LIRC=ON \
                        -DENABLE_EVENTCLIENTS=ON \
-                       -DENABLE_LDGOLD=ON \
+                       -DENABLE_LDGOLD=OFF \
                        $KODI_ARCH \
                        $KODI_OPENGL \
                        $KODI_OPENGLES \
@@ -94,13 +86,6 @@ PKG_CMAKE_OPTS_TARGET="-DNATIVEPREFIX=$ROOT/$TOOLCHAIN \
 
 # configure GPU drivers and dependencies:
 get_graphicdrivers
-=======
-# configure GPU drivers and dependencies:
-  get_graphicdrivers
-
-# for dbus support
-  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET dbus"
->>>>>>> parent of 1278591b6... linux 4.8.17 configuration set
 
 if [ "$DISPLAYSERVER" = "x11" ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET libX11 libXext libdrm libXrandr"
@@ -109,18 +94,18 @@ else
   KODI_XORG="-DENABLE_X11=OFF"
 fi
 
-<<<<<<< HEAD
 if [ "$OPENGL" = "mesa" ]; then
-  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET glu"
-  PKG_CMAKE_OPTS_TARGET+=" -DENABLE_OPENGL=ON"
-  PKG_CMAKE_OPTS_TARGET+=" -DENABLE_OPENGLES=OFF"
-=======
-if [ ! "$OPENGL" = "mesa" ]; then
   PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET $OPENGL glu"
   KODI_OPENGL="-DENABLE_OPENGL=ON"
->>>>>>> parent of 1278591b6... linux 4.8.17 configuration set
 else
   KODI_OPENGL="-DENABLE_OPENGL=OFF"
+fi
+
+if [ "$OPENGLES_SUPPORT" = yes ]; then
+  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET $OPENGLES"
+  KODI_OPENGLES="-DENABLE_OPENGLES=ON"
+else
+  KODI_OPENGLES="-DENABLE_OPENGLES=OFF"
 fi
 
 if [ "$ALSA_SUPPORT" = yes ]; then
@@ -240,14 +225,14 @@ else
 fi
 
 if [ "$VAAPI_SUPPORT" = yes ]; then
-  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET libva-intel-driver"
+  PKG_DEPENDS_TARGET="$PKG_DEPENDS_TARGET intel-vaapi-driver"
   KODI_VAAPI="-DENABLE_VAAPI=ON"
 else
   KODI_VAAPI="-DENABLE_VAAPI=OFF"
 fi
 
 if [ "$TARGET_ARCH" = "i386" ]; then
-  KODI_ARCH="-DWITH_CPU=$TARGET_ARCH"
+  KODI_ARCH="-DWITH_CPU=i686"
 else
   KODI_ARCH="-DWITH_ARCH=$TARGET_ARCH"
 fi
@@ -265,59 +250,9 @@ if [ ! "$KODIPLAYER_DRIVER" = default ]; then
   fi
 fi
 
-PKG_CMAKE_SCRIPT_HOST="tools/depends/native/JsonSchemaBuilder/CMakeLists.txt"
-PKG_CMAKE_SCRIPT_BOOTSTRAP="tools/depends/native/TexturePacker/CMakeLists.txt"
-PKG_CMAKE_SCRIPT_TARGET="project/cmake/CMakeLists.txt"
-PKG_PYTHON_VERSION="2.7"
-
-PKG_CMAKE_OPTS_BOOTSTRAP="-DCORE_SOURCE_DIR=$ROOT/$PKG_BUILD"
-PKG_CMAKE_OPTS_HOST="-DCORE_SOURCE_DIR=$ROOT/$PKG_BUILD"
-PKG_CMAKE_OPTS_TARGET="-DNATIVEPREFIX=$ROOT/$TOOLCHAIN \
-                       -DWITH_TEXTUREPACKER=$ROOT/$TOOLCHAIN/bin/TexturePacker \
-                       -DDEPENDS_PATH=$ROOT/$PKG_BUILD/depends \
-                       -DPYTHON_INCLUDE_DIRS=$SYSROOT_PREFIX/usr/include/python2.7 \
-                       -DGIT_VERSION=$PKG_VERSION \
-                       -DENABLE_INTERNAL_FFMPEG=OFF \
-                       -DFFMPEG_INCLUDE_DIRS=$SYSROOT_PREFIX/usr \
-                       -DENABLE_INTERNAL_CROSSGUID=OFF \
-                       -DENABLE_SDL=OFF \
-                       -DENABLE_OPENSSL=ON \
-                       -DENABLE_UDEV=ON \
-                       -DENABLE_DBUS=ON \
-                       -DENABLE_XSLT=ON \
-                       -DENABLE_CCACHE=ON \
-                       -DENABLE_LIRC=ON \
-                       -DENABLE_EVENTCLIENTS=ON \
-                       -DENABLE_LDGOLD=OFF \
-                       $KODI_ARCH \
-                       $KODI_OPENGL \
-                       $KODI_OPENMAX \
-                       $KODI_VDPAU \
-                       $KODI_VAAPI \
-                       $KODI_JOYSTICK \
-                       $KODI_CEC \
-                       $KODI_XORG \
-                       $KODI_SAMBA \
-                       $KODI_NFS \
-                       $KODI_DVDCSS \
-                       $KODI_AVAHI \
-                       $KODI_UPNP \
-                       $KODI_MYSQL \
-                       $KODI_SSH \
-                       $KODI_AIRPLAY \
-                       $KODI_AIRTUNES \
-                       $KODI_NONFREE \
-                       $KODI_OPTICAL \
-                       $KODI_BLURAY \
-                       $KODI_PLAYER"
-
-makeinstall_host() {
-  rm -f $ROOT/$TOOLCHAIN/bin/JsonSchemaBuilder
-    cp -PR JsonSchemaBuilder $ROOT/$TOOLCHAIN/bin
-}
 
 pre_configure_bootstrap() {
-  CXXFLAGS+=" -DTARGET_POSIX -std=c++0x -I$ROOT/$PKG_BUILD/xbmc/linux"
+  CXXFLAGS="$CXXFLAGS -std=c++11 -DTARGET_POSIX -DTARGET_LINUX -D_LINUX -I$ROOT/$PKG_BUILD/xbmc/linux"
 }
 
 makeinstall_bootstrap() {
@@ -325,20 +260,13 @@ makeinstall_bootstrap() {
     cp -PR TexturePacker $ROOT/$TOOLCHAIN/bin
 }
 
-pre_configure_target() {
-# kodi should never be built with lto
-  strip_lto
-
-  export LIBS="$LIBS -lz -lterminfo"
+makeinstall_host() {
+  rm -f $ROOT/$TOOLCHAIN/bin/JsonSchemaBuilder
+    cp -PR JsonSchemaBuilder $ROOT/$TOOLCHAIN/bin
 }
 
-pre_make_target() {
-# setup skin dir from default skin
-  SKIN_DIR="skin.`tolower $SKIN_DEFAULT`"
-
-# setup default skin inside the sources
-  sed -i -e "s|skin.estuary|$SKIN_DIR|g" $ROOT/$PKG_BUILD/xbmc/system.h
-  sed -i -e "s|skin.estuary|$SKIN_DIR|g" $ROOT/$PKG_BUILD/system/settings/settings.xml
+pre_configure_target() {
+  export LIBS="$LIBS -lssp -ltermcap"
 }
 
 post_makeinstall_target() {
@@ -381,30 +309,40 @@ post_makeinstall_target() {
     cp -R $PKG_DIR/config/repository.retroplayer.libreelec.tv $INSTALL/usr/share/kodi/addons
     $SED "s|@ADDON_URL@|http://lrusak.libreelec.tv/addons/$ADDON_PATH|g" $INSTALL/usr/share/kodi/addons/repository.retroplayer.libreelec.tv/addon.xml
 
-# install project specific configs
-
   mkdir -p $INSTALL/usr/share/kodi/config
+    cp $PKG_DIR/config/guisettings.xml $INSTALL/usr/share/kodi/config
+    cp $PKG_DIR/config/sources.xml $INSTALL/usr/share/kodi/config
+
+# install project specific configs
+    if [ -n "$DEVICE" -a -f $PROJECT_DIR/$PROJECT/devices/$DEVICE/kodi/guisettings.xml ]; then
+      cp -R $PROJECT_DIR/$PROJECT/devices/$DEVICE/kodi/guisettings.xml $INSTALL/usr/share/kodi/config
+    elif [ -f $PROJECT_DIR/$PROJECT/kodi/guisettings.xml ]; then
+      cp -R $PROJECT_DIR/$PROJECT/kodi/guisettings.xml $INSTALL/usr/share/kodi/config
+    fi
+
+    if [ -n "$DEVICE" -a -f $PROJECT_DIR/$PROJECT/devices/$DEVICE/kodi/sources.xml ]; then
+      cp -R $PROJECT_DIR/$PROJECT/devices/$DEVICE/kodi/sources.xml $INSTALL/usr/share/kodi/config
+    elif [ -f $PROJECT_DIR/$PROJECT/kodi/sources.xml ]; then
+      cp -R $PROJECT_DIR/$PROJECT/kodi/sources.xml $INSTALL/usr/share/kodi/config
+    fi
+
+  mkdir -p $INSTALL/usr/share/kodi/system/
+    if [ -n "$DEVICE" -a -f $PROJECT_DIR/$PROJECT/devices/$DEVICE/kodi/advancedsettings.xml ]; then
+      cp $PROJECT_DIR/$PROJECT/devices/$DEVICE/kodi/advancedsettings.xml $INSTALL/usr/share/kodi/system/
+    elif [ -f $PROJECT_DIR/$PROJECT/kodi/advancedsettings.xml ]; then
+      cp $PROJECT_DIR/$PROJECT/kodi/advancedsettings.xml $INSTALL/usr/share/kodi/system/
+    else
+      cp $PKG_DIR/config/advancedsettings.xml $INSTALL/usr/share/kodi/system/
+    fi
+
   mkdir -p $INSTALL/usr/share/kodi/system/settings
-
-  $PKG_DIR/scripts/xml_merge.py $PKG_DIR/config/guisettings.xml \
-                                $PROJECT_DIR/$PROJECT/kodi/guisettings.xml \
-                                $PROJECT_DIR/$PROJECT/devices/$DEVICE/kodi/guisettings.xml \
-                                > $INSTALL/usr/share/kodi/config/guisettings.xml
-
-  $PKG_DIR/scripts/xml_merge.py $PKG_DIR/config/sources.xml \
-                                $PROJECT_DIR/$PROJECT/kodi/sources.xml \
-                                $PROJECT_DIR/$PROJECT/devices/$DEVICE/kodi/sources.xml \
-                                > $INSTALL/usr/share/kodi/config/sources.xml
-
-  $PKG_DIR/scripts/xml_merge.py $PKG_DIR/config/advancedsettings.xml \
-                                $PROJECT_DIR/$PROJECT/kodi/advancedsettings.xml \
-                                $PROJECT_DIR/$PROJECT/devices/$DEVICE/kodi/advancedsettings.xml \
-                                > $INSTALL/usr/share/kodi/system/advancedsettings.xml
-
-  $PKG_DIR/scripts/xml_merge.py $PKG_DIR/config/appliance.xml \
-                                $PROJECT_DIR/$PROJECT/kodi/appliance.xml \
-                                $PROJECT_DIR/$PROJECT/devices/$DEVICE/kodi/appliance.xml \
-                                > $INSTALL/usr/share/kodi/system/settings/appliance.xml
+    if [ -n "$DEVICE" -a -f $PROJECT_DIR/$PROJECT/devices/$DEVICE/kodi/appliance.xml ]; then
+      cp $PROJECT_DIR/$PROJECT/devices/$DEVICE/kodi/appliance.xml $INSTALL/usr/share/kodi/system/settings
+    elif [ -f $PROJECT_DIR/$PROJECT/kodi/appliance.xml ]; then
+      cp $PROJECT_DIR/$PROJECT/kodi/appliance.xml $INSTALL/usr/share/kodi/system/settings
+    else
+      cp $PKG_DIR/config/appliance.xml $INSTALL/usr/share/kodi/system/settings
+    fi
 
   # update addon manifest
   ADDON_MANIFEST=$INSTALL/usr/share/kodi/system/addon-manifest.xml
@@ -431,7 +369,7 @@ post_makeinstall_target() {
 }
 
 post_install() {
-  enable_service kodi.target
+  # enable default services
   enable_service kodi-autostart.service
   enable_service kodi-cleanlogs.service
   enable_service kodi-halt.service

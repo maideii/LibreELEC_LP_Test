@@ -33,19 +33,29 @@ PKG_IS_ADDON="no"
 PKG_USE_CMAKE="no"
 PKG_AUTORECONF="yes"
 
-post_make_target() {
-  mkdir -p $SYSROOT_PREFIX/usr/lib
-    cp -P $ROOT/$PKG_BUILD/.$TARGET_NAME/crypto/.libs/libcrypto.s* $SYSROOT_PREFIX/usr/lib/.
-    cp -P $ROOT/$PKG_BUILD/.$TARGET_NAME/ssl/.libs/libssl.s* $SYSROOT_PREFIX/usr/lib/.
-    cp -P $ROOT/$PKG_BUILD/.$TARGET_NAME/tls/.libs/libtls.s* $SYSROOT_PREFIX/usr/lib/.
-}
-
 post_makeinstall_target() {
 # backwards compatibility
-  mkdir -p $INSTALL/etc/pki/tls
-    ln -sf /etc/ssl/cert.pem $INSTALL/etc/pki/tls/cacert.pem
-  mkdir -p $INSTALL/etc/pki/tls/certs
-    ln -sf /etc/ssl/cert.pem $INSTALL/etc/pki/tls/certs/ca-bundle.crt
-  mkdir -p $SYSROOT_PREFIX/usr/lib/pkgconfig
-    cp -P $ROOT/$PKG_BUILD/.$TARGET_NAME/*.pc $SYSROOT_PREFIX/usr/lib/pkgconfig
+
+  # libressl default location
+    mkdir -p $INSTALL/etc/ssl/
+      ln -sf /usr/etc/ssl/cert.pem $INSTALL/etc/ssl/cert.pem
+
+  # LibreELEC default location
+    mkdir -p $INSTALL/etc/pki/tls
+      ln -sf /etc/ssl/cert.pem $INSTALL/etc/pki/tls/cacert.pem
+    mkdir -p $INSTALL/etc/pki/tls/certs
+      ln -sf /etc/ssl/cert.pem $INSTALL/etc/pki/tls/certs/ca-bundle.crt
+
+  # Debian/Ubuntu/Gentoo etc. compat
+    mkdir -p $INSTALL/etc/ssl/certs/
+      ln -sf /usr/etc/ssl/cert.pem $INSTALL/etc/ssl/certs/ca-certificates.crt
+      ln -sf /usr/etc/ssl/cert.pem $INSTALL/etc/ssl/certs/ca-bundle.crt
+
+  # Fedora/RHEL compat
+    mkdir -p $INSTALL/etc/pki/tls/certs/
+      ln -sf /usr/etc/ssl/cert.pem $INSTALL/etc/pki/tls/certs/ca-bundle.crt
+
+  # OpenSUSE compat
+    mkdir -p $INSTALL/etc/ssl/
+      ln -sf /usr/etc/ssl/cert.pem $INSTALL/etc/ssl/ca-bundle.pem
 }

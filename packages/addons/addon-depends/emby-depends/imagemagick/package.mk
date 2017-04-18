@@ -17,12 +17,7 @@
 ################################################################################
 
 PKG_NAME="imagemagick"
-<<<<<<< HEAD
 PKG_VERSION="7.0.5-0"
-=======
-PKG_VERSION="6.9.6-7"
-PKG_REV="1"
->>>>>>> parent of 1278591b6... linux 4.8.17 configuration set
 PKG_ARCH="any"
 PKG_LICENSE="http://www.imagemagick.org/script/license.php"
 PKG_SITE="http://www.imagemagick.org/"

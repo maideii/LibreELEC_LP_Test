@@ -36,8 +36,3 @@ CFLAGS="$CFLAGS -D_LARGEFILE64_SOURCE"
 PKG_CONFIGURE_OPTS_TARGET="ac_cv_header_asm_mtrr_h=set \
                            --with-pciids-path=/usr/share \
                            --with-zlib "
-
-post_makeinstall_target() {
-    mkdir -p $SYSROOT_PREFIX/usr/lib
-      cp -P $INSTALL/usr/lib/libpciaccess* $SYSROOT_PREFIX/usr/lib/.
-}

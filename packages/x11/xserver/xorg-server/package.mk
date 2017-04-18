@@ -18,10 +18,6 @@
 
 PKG_NAME="xorg-server"
 PKG_VERSION="1.19.1"
-<<<<<<< HEAD
-PKG_REV="1"
-=======
->>>>>>> parent of 1278591b6... linux 4.8.17 configuration set
 PKG_ARCH="any"
 PKG_LICENSE="OSS"
 PKG_SITE="http://www.X.org"

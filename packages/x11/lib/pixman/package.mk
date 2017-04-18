@@ -57,6 +57,4 @@ post_makeinstall_target() {
      $SYSROOT_PREFIX/usr/lib/pkgconfig/pixman.pc
     cp -rf $SYSROOT_PREFIX/usr/include/pixman-1 \
      $SYSROOT_PREFIX/usr/include/pixman
-  mkdir -p $SYSROOT_PREFIX/usr/lib
-    cp -P $INSTALL/usr/lib/libpixman-1* $SYSROOT_PREFIX/usr/lib/.
 }

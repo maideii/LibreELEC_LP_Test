@@ -39,6 +39,4 @@ makeinstall_host() {
   chmod -v 755 $ROOT/$PKG_BUILD/.$HOST_NAME/help2man
   mkdir -p $ROOT/$TOOLCHAIN/bin/
   cp -P $ROOT/$PKG_BUILD/.$HOST_NAME/help2man $ROOT/$TOOLCHAIN/bin/.
-#  mkdir -p $ROOT/$TOOLCHAIN/lib/help2man/
-#  cp -P $ROOT/$PKG_BUILD/.$HOST_NAME/*.so $ROOT/$TOOLCHAIN/lib/help2man/.
 }

@@ -77,6 +77,7 @@ PKG_CONFIGURE_OPTS_TARGET="py_cv_mod_gtk_=yes \
 			   --disable-nls"
 
 pre_configure_target() {
+  cd $ROOT/$PKG_BUILD
   NOCONFIGURE=1 ./autogen.sh
 }
 
@@ -112,8 +113,6 @@ post_makeinstall_target() {
 
   mkdir -p $INSTALL/usr/share/services
     cp -P $PKG_DIR/default.d/*.conf $INSTALL/usr/share/services
-  mkdir -p $SYSROOT_PREFIX/usr/lib
-    cp -P $INSTALL/usr/lib/lib* $SYSROOT_PREFIX/usr/lib/.
 }
 
 post_install() {

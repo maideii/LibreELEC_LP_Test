@@ -17,12 +17,7 @@
 ################################################################################
 
 PKG_NAME="dbus"
-<<<<<<< HEAD
 PKG_VERSION="1.10.16"
-PKG_REV="1"
-=======
-PKG_VERSION="1.10.14"
->>>>>>> parent of 1278591b6... linux 4.8.17 configuration set
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="https://dbus.freedesktop.org"
@@ -33,7 +28,7 @@ PKG_SHORTDESC="dbus: simple interprocess messaging system"
 PKG_LONGDESC="D-Bus is a message bus, used for sending messages between applications. This package contains the D-Bus daemon and related utilities and the dbus shared library."
 
 PKG_IS_ADDON="no"
-PKG_AUTORECONF="no"
+PKG_AUTORECONF="yes"
 
 PKG_CONFIGURE_OPTS_TARGET="export ac_cv_have_abstract_sockets=yes \
                            --with-sysroot=$SYSROOT_PREFIX \
@@ -54,11 +49,6 @@ PKG_CONFIGURE_OPTS_TARGET="export ac_cv_have_abstract_sockets=yes \
                            --without-valgrind \
                            --without-x \
                            --with-dbus-user=dbus"
-
-post_make_target() {
-    mkdir -p $SYSROOT_PREFIX/usr/lib
-      cp -P $ROOT/$PKG_BUILD/.$TARGET_NAME/dbus/.libs/libdbus-1.s* $SYSROOT_PREFIX/usr/lib/.
-}
 
 post_makeinstall_target() {
   rm -rf $INSTALL/etc/rc.d

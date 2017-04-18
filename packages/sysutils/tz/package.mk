@@ -17,12 +17,7 @@
 ################################################################################
 
 PKG_NAME="tz"
-<<<<<<< HEAD
-PKG_VERSION="2017a"
-PKG_REV="1"
-=======
-PKG_VERSION="2016j"
->>>>>>> parent of 1278591b6... linux 4.8.17 configuration set
+PKG_VERSION="2017b"
 PKG_ARCH="any"
 PKG_LICENSE="Public Domain"
 PKG_SITE="http://www.iana.org/time-zones"
