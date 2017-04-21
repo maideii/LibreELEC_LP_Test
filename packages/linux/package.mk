@@ -199,25 +199,34 @@ make_init() {
 makeinstall_init() {
   if [ -n "$INITRAMFS_MODULES" ]; then
     mkdir -p $INSTALL/etc
-    mkdir -p $INSTALL/usr/lib/modules
+    mkdir -p $INSTALL/lib/modules
 
     for i in $INITRAMFS_MODULES; do
       module=`find .install_pkg/usr/lib/modules/$(get_module_dir)/kernel -name $i.ko`
       if [ -n "$module" ]; then
         echo $i >> $INSTALL/etc/modules
-        cp $module $INSTALL/usr/lib/modules/`basename $module`
+        cp $module $INSTALL/lib/modules/`basename $module`
       fi
     done
   fi
 
   if [ "$UVESAFB_SUPPORT" = yes ]; then
-    mkdir -p $INSTALL/usr/lib/modules
+    mkdir -p $INSTALL/lib/modules
       uvesafb=`find .install_pkg/usr/lib/modules/$(get_module_dir)/kernel -name uvesafb.ko`
-      cp $uvesafb $INSTALL/usr/lib/modules/`basename $uvesafb`
+      cp $uvesafb $INSTALL/lib/modules/`basename $uvesafb`
   fi
+
+  echo "mkdir -p dev" >> $FAKEROOT_SCRIPT_INIT
+  echo "mknod -m 600 dev/console c 5 1" >> $FAKEROOT_SCRIPT_INIT
 }
 
 post_install() {
+  mkdir -p $INSTALL/lib
+    ln -sf /usr/lib/modules/ $INSTALL/lib/modules
+
+  mkdir -p $INSTALL/lib
+    ln -sf /usr/lib/firmware/ $INSTALL/lib/firmware
+
   mkdir -p $INSTALL/usr/lib/firmware/
     ln -sf /storage/.config/firmware/ $INSTALL/usr/lib/firmware/updates
 

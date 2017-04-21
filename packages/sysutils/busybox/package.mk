@@ -17,13 +17,13 @@
 ################################################################################
 
 PKG_NAME="busybox"
-PKG_VERSION="1.25.1"
+PKG_VERSION="1.26.2"
 PKG_ARCH="any"
 PKG_LICENSE="GPL"
 PKG_SITE="http://www.busybox.net"
 PKG_URL="http://busybox.net/downloads/$PKG_NAME-$PKG_VERSION.tar.bz2"
 PKG_DEPENDS_HOST=""
-PKG_DEPENDS_TARGET="toolchain busybox:host hdparm dosfstools e2fsprogs zip unzip pciutils usbutils parted procps-ng"
+PKG_DEPENDS_TARGET="toolchain busybox:host hdparm dosfstools e2fsprogs zip unzip pciutils usbutils parted procps-ng gptfdisk"
 PKG_DEPENDS_INIT="toolchain"
 PKG_SECTION="system"
 PKG_SHORTDESC="BusyBox: The Swiss Army Knife of Embedded Linux"
@@ -34,10 +34,12 @@ PKG_AUTORECONF="no"
 
 PKG_MAKE_OPTS_HOST="ARCH=$TARGET_ARCH CROSS_COMPILE= KBUILD_VERBOSE=1 install"
 PKG_MAKE_OPTS_TARGET="ARCH=$TARGET_ARCH \
+                      HOSTCC=$HOST_CC \
                       CROSS_COMPILE=$TARGET_PREFIX \
                       KBUILD_VERBOSE=1 \
                       install"
 PKG_MAKE_OPTS_INIT="ARCH=$TARGET_ARCH \
+                    HOSTCC=$HOST_CC \
                     CROSS_COMPILE=$TARGET_PREFIX \
                     KBUILD_VERBOSE=1 \
                     install"

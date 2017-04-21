@@ -38,8 +38,8 @@
   . /functions
 
   # set needed variables
-  MODULE_DIR=/usr/lib/modules
-  SYSTEMD_BIN=/usr/lib/systemd/systemd
+  MODULE_DIR=/lib/modules
+  SYSTEMD_BIN=/lib/systemd/systemd
 
   UPDATE_ROOT=/storage/.update
   UPDATE_DIR="$UPDATE_ROOT"
@@ -989,10 +989,11 @@
       mount_part "/dev/$IMAGE_SYSTEM" "/sysroot" "ro,loop"
     fi
 
+    chown 0:0 /storage
     mount --move /flash /sysroot/flash
     mount --move /storage /sysroot/storage
 
-    if [ ! -d "/sysroot/usr/lib/modules/$(uname -r)/" -a -f "/sysroot/usr/lib/systemd/systemd" ]; then
+    if [ ! -d "/sysroot/$MODULE_DIR/$(uname -r)/" -a -f "/sysroot/usr/$SYSTEMD_BIN" ]; then
       echo ""
       echo "NEVER TOUCH boot= in extlinux.conf / cmdline.txt!"
       echo "If you don't know what you are doing,"
@@ -1001,7 +1002,7 @@
       StartProgress countdown "Normal startup in 60s... " 60 "NOW"
     fi
 
-    [ -f "/sysroot/usr/lib/systemd/systemd" ] || error "final_check" "Could not find systemd!"
+    [ -f "/sysroot/$SYSTEMD_BIN" ] || error "final_check" "Could not find systemd!"
   }
 
   if [ "${boot%%=*}" = "FILE" ]; then
@@ -1069,6 +1070,6 @@
   fi
 
   # switch to new sysroot and start real init
-  exec /bin/busybox switch_root /sysroot /usr/lib/systemd/systemd $INIT_ARGS $INIT_UNIT
+  exec /bin/busybox switch_root /sysroot $SYSTEMD_BIN $INIT_ARGS $INIT_UNIT
 
   error "switch_root" "Error in initramfs. Could not switch to new root"

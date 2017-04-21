@@ -166,7 +166,7 @@ post_makeinstall_target() {
   rm -rf $INSTALL/usr/lib/systemd/system/systemd-nspawn@.service
 
   # remove generators/catalog
-  rm -rf $INSTALL/usr/lib/systemd/system-generators
+  rm -rf $INSTALL/lib/systemd/system-generators/*
   rm -rf $INSTALL/usr/lib/systemd/catalog
 
   # distro preset policy
@@ -203,9 +203,6 @@ post_makeinstall_target() {
   ln -sf /usr/bin/systemctl $INSTALL/usr/sbin/shutdown
   ln -sf /usr/bin/systemctl $INSTALL/usr/sbin/telinit
 
-  # strip
-  debug_strip $INSTALL/usr
-
   # defaults
   mkdir -p $INSTALL/usr/config
   cp -PR $PKG_DIR/config/* $INSTALL/usr/config
@@ -220,11 +217,6 @@ post_makeinstall_target() {
   ln -sf /storage/.config/hwdb.d $INSTALL/etc/udev/hwdb.d
   rm -rf $INSTALL/etc/udev/rules.d
   ln -sf /storage/.config/udev.rules.d $INSTALL/etc/udev/rules.d
-
-  #recopy back the missing symlink
-  mkdir -p $SYSROOT_PREFIX/usr/lib
-  cp -P $ROOT/$PKG_BUILD/.$TARGET_NAME/.libs/libudev.s* $SYSROOT_PREFIX/usr/lib
-  cp -P $ROOT/$PKG_BUILD/.$TARGET_NAME/.libs/libsystemd.s* $SYSROOT_PREFIX/usr/lib
 }
 
 post_install() {
