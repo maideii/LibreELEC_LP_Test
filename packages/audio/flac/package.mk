@@ -51,9 +51,6 @@ else
 fi
 
 pre_configure_target() {
-  # flac-1.3.1 dont build with LTO support
-  strip_lto
-
   export CFLAGS="$CFLAGS -fPIC -DPIC"
 }
 

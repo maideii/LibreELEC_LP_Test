@@ -30,9 +30,4 @@ PKG_SHORTDESC="Speex / OPUS audio codec"
 PKG_LONGDESC="Speex / OPUS audio codec"
 
 PKG_IS_ADDON="no"
-PKG_AUTORECONF="no"
-
-post_makeinstall_target() {
-  mkdir -p $SYSROOT_PREFIX/usr/lib
-    cp -P $INSTALL/usr/lib/libspeex.s* $SYSROOT_PREFIX/usr/lib/.
-}
+PKG_AUTORECONF="yes"
