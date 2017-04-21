@@ -232,9 +232,7 @@ else
 fi
 
 if [ "$TARGET_ARCH" = "i386" ]; then
-  KODI_ARCH="-DWITH_CPU=i686"
-else
-  KODI_ARCH="-DWITH_ARCH=$TARGET_ARCH"
+  KODI_ARCH="-DWITH_ARCH=i686"
 fi
 
 if [ ! "$KODIPLAYER_DRIVER" = default ]; then
